@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Total languages supported
-const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs"];
+const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs", "rs"];
 const compilerVersions = [
   "11.0.15",
   "11.2.0",
@@ -31,6 +31,7 @@ const compilerVersions = [
   "16.13.2",
   "1.18.3",
   "6.12.0.140",
+  "1.62.1",
 ];
 
 const { WebSocketServer } = require('ws');
