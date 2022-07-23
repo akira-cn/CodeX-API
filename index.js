@@ -7,6 +7,7 @@ const { createCodeFile } = require("./createCodeFile"),
     executeJavaScript,
     executeGo,
     executeCsharp,
+    executeRust,
   } = require("./executeCode");
 
 const express = require("express");
@@ -82,6 +83,9 @@ app.post("/", async (req, res) => {
         break;
       case "js":
         output = await executeJavaScript(codeFile, input, timeout, ws);
+        break;
+      case "rs":
+        output = await executeRust(codeFile, input, timeout, ws);
         break;
       case "go":
         output = await executeGo(codeFile, input, timeout, ws);

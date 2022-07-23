@@ -3,7 +3,8 @@ const { executePython } = require('./python.js');
 const { executeCorCPP } = require('./c_or_cpp.js');
 const { executeJavaScript } = require('./javascript.js');
 const { executeGo } = require('./go.js');
-const { executeCsharp } = require('./csharp.js')
+const { executeCsharp } = require('./csharp.js');
+const { executeRust } = require('./rust.js');
 
 module.exports = {
   executeJava,
@@ -11,5 +12,6 @@ module.exports = {
   executeCorCPP,
   executeJavaScript,
   executeGo,
-  executeCsharp
+  executeCsharp,
+  executeRust
 };
