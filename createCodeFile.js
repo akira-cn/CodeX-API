@@ -14,7 +14,7 @@ const createCodeFile = (language, code) => {
 
   if(language === 'erl') {
     fileName = 'x' + fileName;
-    code = code.replace(/-module\(.*)\)/img, `-module(x${jobID})`);
+    code = code.replace(/-module\(.*\)/img, `-module(x${jobID})`);
   }
   fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString());
 
