@@ -13,7 +13,7 @@ const createCodeFile = (language, code) => {
     fileName = `${jobID}.${language}`;
 
   if(language === 'erl') {
-    jobID = 'x' + jobID.replace(/-/, '');
+    jobID = 'x' + jobID.replace(/-/g, '');
     fileName = `${jobID}.${language}`;
     code = code.replace(/-module\(.*\)/img, `-module(${jobID})`);
   }
