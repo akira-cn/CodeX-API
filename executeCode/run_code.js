@@ -63,7 +63,7 @@ function execCommand(command, args, inputs, timeout = 8, ws) {
   });
 }
 
-module.exports = async (codeFile, inputs, {command, args = [], timeout = 8, language, version, needCompile, runCommand, ws}) => {
+module.exports = async (codeFile, inputs, {command, args = [], timeout = 8, language, version, needCompile, runCommand, runArgs, ws}) => {
   let result = await execCommand(command, [
       ...args,
       `${path.join(__dirname, `../codes/${codeFile}`)}`,
@@ -76,7 +76,7 @@ module.exports = async (codeFile, inputs, {command, args = [], timeout = 8, lang
     if(runCommand) {
       result = await execCommand(
         runCommand,
-        [`${path.join(
+        runArgs ? runArgs : [`${path.join(
           __dirname,
           `../classes/${codeFile.split(".")[0]}`
         )}.out`],

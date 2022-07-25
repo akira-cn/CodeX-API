@@ -13,6 +13,7 @@ const { createCodeFile } = require("./createCodeFile"),
     executePhp,
     executePerl,
     executeDart,
+    executeErlang,
   } = require("./executeCode");
 
 const express = require("express");
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Total languages supported
-const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs", "rs", "zig", "rb", "php", "pl", "dart"];
+const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs", "rs", "zig", "rb", "php", "pl", "dart", "erl"];
 const compilerVersions = [
   "11.0.15",
   "11.2.0",
@@ -42,6 +43,7 @@ const compilerVersions = [
   "7.3.29",
   "5.30.0",
   "2.17.6",
+  "10.6.4",
 ];
 
 const { WebSocketServer } = require('ws');
@@ -82,6 +84,9 @@ app.post("/", async (req, res) => {
     switch (language) {
       case "dart":
         output = await executeDart(codeFile, input, timeout,ws);
+        break;
+      case "erl":
+        output = await executeErlang(codeFile, input, timeout,ws);
         break;
       case "java":
         output = await executeJava(codeFile, input, timeout, ws);

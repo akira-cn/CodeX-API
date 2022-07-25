@@ -10,6 +10,7 @@ const { executeRuby } = require('./ruby.js');
 const { executePhp } = require('./php.js');
 const { executePerl } = require('./perl.js');
 const { executeDart } = require('./dart.js');
+const { executeErlang } = require('./erlang');
 
 module.exports = {
   executeJava,
@@ -24,4 +25,5 @@ module.exports = {
   executePhp,
   executePerl,
   executeDart,
+  executeErlang,
 };
