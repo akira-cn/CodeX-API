@@ -8,6 +8,7 @@ const { executeRust } = require('./rust.js');
 const { executeZig } = require('./zig.js');
 const { executeRuby } = require('./ruby.js');
 const { executePhp } = require('./php.js');
+const { executePerl } = require('./perl.js');
 
 module.exports = {
   executeJava,
@@ -20,4 +21,5 @@ module.exports = {
   executeZig,
   executeRuby,
   executePhp,
+  executePerl,
 };
