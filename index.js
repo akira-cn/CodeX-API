@@ -9,6 +9,7 @@ const { createCodeFile } = require("./createCodeFile"),
     executeCsharp,
     executeRust,
     executeZig,
+    executeRuby,
   } = require("./executeCode");
 
 const express = require("express");
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Total languages supported
-const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs", "rs", "zig"];
+const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs", "rs", "zig", "rb"];
 const compilerVersions = [
   "11.0.15",
   "11.2.0",
@@ -34,6 +35,7 @@ const compilerVersions = [
   "6.12.0.140",
   "1.62.1",
   "0.10.0",
+  "2.7.0",
 ];
 
 const { WebSocketServer } = require('ws');
@@ -86,6 +88,9 @@ app.post("/", async (req, res) => {
         break;
       case "js":
         output = await executeJavaScript(codeFile, input, timeout, ws);
+        break;
+      case "rb":
+        output = await executeRuby(codeFile, input, timeout, ws);
         break;
       case "rs":
         output = await executeRust(codeFile, input, timeout, ws);

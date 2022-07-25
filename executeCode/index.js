@@ -6,6 +6,7 @@ const { executeGo } = require('./go.js');
 const { executeCsharp } = require('./csharp.js');
 const { executeRust } = require('./rust.js');
 const { executeZig } = require('./zig.js');
+const { executeRuby } = require('./ruby.js');
 
 module.exports = {
   executeJava,
@@ -16,4 +17,5 @@ module.exports = {
   executeCsharp,
   executeRust,
   executeZig,
+  executeRuby,
 };
