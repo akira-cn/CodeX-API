@@ -9,12 +9,13 @@ if (!fs.existsSync(path.join(__dirname, "classes")))
   fs.mkdirSync(path.join(__dirname, "classes"));
 
 const createCodeFile = (language, code) => {
-  const jobID = getUUID();
-  let fileName = `${jobID}.${language}`;
+  let jobID = getUUID(),
+    fileName = `${jobID}.${language}`;
 
   if(language === 'erl') {
-    fileName = 'x' + fileName;
-    code = code.replace(/-module\(.*\)/img, `-module(x${jobID})`);
+    jobID = 'x' + jobID.replace(/-/, '');
+    fileName = `${jobID}.${language}`;
+    code = code.replace(/-module\(.*\)/img, `-module(${jobID})`);
   }
   fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString());
 
