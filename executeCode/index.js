@@ -9,6 +9,7 @@ const { executeZig } = require('./zig.js');
 const { executeRuby } = require('./ruby.js');
 const { executePhp } = require('./php.js');
 const { executePerl } = require('./perl.js');
+const { executeDart } = require('./dart.js');
 
 module.exports = {
   executeJava,
@@ -22,4 +23,5 @@ module.exports = {
   executeRuby,
   executePhp,
   executePerl,
+  executeDart,
 };
