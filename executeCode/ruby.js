@@ -3,7 +3,6 @@ const executeRuby = async (codeFile, inputs, timeout = 8, ws) => {
   return await runCode(codeFile, inputs, {
     command: 'ruby',
     args: [
-      'run',
     ],
     timeout,
     language: 'ruby',
