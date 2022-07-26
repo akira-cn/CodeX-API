@@ -7,6 +7,8 @@ function execCommand(command, args, inputs, timeout = 8, ws) {
     let output = '',
       error = '',
       timer;
+
+    console.log(`run ${command} ${args}...`);
     
     if(ws) {
       ws.send(JSON.stringify({type: 'ready'}));
@@ -69,7 +71,7 @@ module.exports = async (codeFile, inputs, {command, args = [], timeout = 8, lang
       `${path.join(__dirname, `../codes/${codeFile}`)}`,
     ],
     needCompile?null:inputs,
-    timeout,
+    30,
     needCompile?null:ws);
 
   if(needCompile && !result.error) {
