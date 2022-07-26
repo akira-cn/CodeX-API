@@ -1,8 +1,11 @@
 const path = require("path");
+const fs = require("fs");
 
 const executeScala = async (codeFile, inputs, timeout = 8, ws) => {
   const runCode = require('./run_code');
-  return await runCode(codeFile, inputs, {
+  const className = codeFile.split(".")[0];
+
+  const ret = await runCode(codeFile, inputs, {
     command: 'scalac',
     args: [
     ],
@@ -12,10 +15,19 @@ const executeScala = async (codeFile, inputs, timeout = 8, ws) => {
     needCompile: true,
     runCommand: 'scala',
     runArgs: [
-      'Solution',
+      className,
     ],
     ws,
   });
+
+  try {
+    fs.unlinkSync(`${className}.class`);
+    fs.unlinkSync(`${className}$.class`);
+  } catch(ex) {
+    
+  }
+
+  return ret;
 };
 
 module.exports = {

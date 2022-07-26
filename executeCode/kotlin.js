@@ -1,9 +1,11 @@
 const path = require("path");
+const fs = require("fs");
 
 const executeKotlin = async (codeFile, inputs, timeout = 8, ws) => {
   const runCode = require('./run_code');
-  const jarFile = `${codeFile.split(".")[0]}.jar`;
-  return await runCode(codeFile, inputs, {
+  const jarFile = path.join(__dirname, `../classes/${codeFile.split(".")[0]}.jar`);
+  
+  const ret = await runCode(codeFile, inputs, {
     command: 'kotlinc',
     args: [
       '-include-runtime',
@@ -21,6 +23,14 @@ const executeKotlin = async (codeFile, inputs, timeout = 8, ws) => {
     ],
     ws,
   });
+
+  try {
+    fs.unlinkSync(jarFile);
+  } catch(ex) {
+
+  }
+
+  return ret;
 };
 
 module.exports = {

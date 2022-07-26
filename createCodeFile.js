@@ -12,10 +12,11 @@ const createCodeFile = (language, code) => {
   let jobID = getUUID(),
     fileName = `${jobID}.${language}`;
 
-  if(language === 'erl') {
+  if(language === 'erl' || language === 'scala') {
     jobID = 'x' + jobID.replace(/-/g, '');
     fileName = `${jobID}.${language}`;
-    code = code.replace(/-module\(.*\)/img, `-module(${jobID})`);
+    if(language === 'erl') code = code.replace(/-module\(.*\)/img, `-module(${jobID})`);
+    else code = code.replace(/object\s+(\w+)/img, `object ${jobID}`);
   }
   fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString());
 
