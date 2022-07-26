@@ -12,6 +12,7 @@ const { executePerl } = require('./perl.js');
 const { executeDart } = require('./dart.js');
 const { executeErlang } = require('./erlang');
 const { executeKotlin } = require('./kotlin.js');
+const { executeScala } = require('./scala.js');
 
 module.exports = {
   executeJava,
@@ -28,4 +29,5 @@ module.exports = {
   executeDart,
   executeErlang,
   executeKotlin,
+  executeScala,
 };
