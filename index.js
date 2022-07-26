@@ -16,6 +16,7 @@ const { createCodeFile } = require("./createCodeFile"),
     executeErlang,
     executeKotlin,
     executeScala,
+    executeElixir,
   } = require("./executeCode");
 
 const express = require("express");
@@ -31,7 +32,7 @@ app.use(cors());
 
 // Total languages supported
 const supportedLanguages = ["java", "cpp", "py", "c", "js", "go", "cs", "rs", "zig", "rb",
-  "php", "pl", "dart", "erl", "kt", "scala"];
+  "php", "pl", "dart", "erl", "kt", "scala", "elixir"];
 const compilerVersions = [
   "11.0.15",
   "11.2.0",
@@ -49,6 +50,7 @@ const compilerVersions = [
   "10.6.4",
   "1.7.10",
   "2.11.12",
+  "1.13.4",
 ];
 
 const { WebSocketServer } = require('ws');
@@ -92,6 +94,9 @@ app.post("/", async (req, res) => {
         break;
       case "erl":
         output = await executeErlang(codeFile, input, timeout,ws);
+        break;
+      case "elixir":
+        output = await executeElixir(codeFile, input, timeout,ws);
         break;
       case "kt":
         output = await executeKotlin(codeFile, input, timeout,ws);
