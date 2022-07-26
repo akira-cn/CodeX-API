@@ -1,9 +1,9 @@
 const path = require("path");
-const fs = require("fs");
+const fs = require('fs');
 
 const executeErlang = async (codeFile, inputs, timeout = 8, ws) => {
   const runCode = require('./run_code');
-  const beamFile =  path.join(__dirname, `../classes/${codeFile.split(".")[0]}`);
+  const beamName = codeFile.split(".")[0];
 
   const ret = await runCode(codeFile, inputs, {
     command: 'erlc',
@@ -17,7 +17,7 @@ const executeErlang = async (codeFile, inputs, timeout = 8, ws) => {
     runArgs: [
       '-noshell',
       '-s',
-      beamFile,
+      beamName, 
       'main',
       '-s',
       'init',
@@ -27,7 +27,7 @@ const executeErlang = async (codeFile, inputs, timeout = 8, ws) => {
   });
 
   try {
-    fs.unlinkSync(beamFile);
+    fs.unlinkSync(`${className}.beam`);
   } catch(ex) {
     
   }
