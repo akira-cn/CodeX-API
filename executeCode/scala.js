@@ -12,7 +12,7 @@ const executeScala = async (codeFile, inputs, timeout = 8, ws) => {
     needCompile: true,
     runCommand: 'scala',
     runArgs: [
-      codeFile.split(".")[0],
+      'Solution',
     ],
     ws,
   });
