@@ -27,7 +27,7 @@ const executeErlang = async (codeFile, inputs, timeout = 8, ws) => {
   });
 
   try {
-    fs.unlinkSync(`${className}.beam`);
+    fs.unlinkSync(`${beamName}.beam`);
   } catch(ex) {
     
   }
